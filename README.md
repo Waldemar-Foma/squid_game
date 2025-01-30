@@ -18,11 +18,10 @@
 1. Убедитесь, что у вас установлен Python 3.x и PyGame.
 2. Склонируйте репозиторий:
    ```bash
-   git clone https://github.com/ваш-репозиторий.git
+   git clone https://github.com/squid_game.git
 Перейдите в директорию проекта и запустите игру:
 
 bash
-Copy
 python main.py
 Зависимости
 Python 3.x
