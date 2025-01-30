@@ -28,16 +28,3 @@ python main.py
 Python 3.x
 
 PyGame
-
-Структура проекта
-Copy
-project/
-├── main.py                # Основной файл для запуска игры
-├── module/
-│   ├── game.py            # Логика игры и главный цикл
-│   ├── error_window.py    # Обработка и отображение ошибок
-│   ├── loading_screen.py  # Экран загрузки
-│   ├── play_screen.py     # Экран игры
-│   ├── settings_screen.py # Экран настроек
-│   └── about_screen.py    # Экран "О проекте"
-└── README.md              # Документация
