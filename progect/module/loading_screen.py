@@ -16,7 +16,7 @@ class LoadingScreen:
         self.loading_text = "Загрузка..."
 
         # Уменьшенный шрифт для текста
-        self.small_font = pygame.font.Font("data/pixelfont.otf", 36)  # Шрифт с размером 36
+        self.small_font = pygame.font.Font("data/play_font.otf", 36)  # Шрифт с размером 36
 
         # Статус-бар
         self.status_bar_width = 600  # Ширина статус-бара
