@@ -31,7 +31,7 @@ class PlayScreen:
 
         # Надпись в левом нижнем углу
         self.version_text = "Alpha_test v.0.1"
-        self.version_font = pygame.font.Font("data/pixelfont.otf", 15)  # Шрифт для версии
+        self.version_font = pygame.font.Font("data/play_font.otf", 15)  # Шрифт для версии
 
     def load_background(self):
         """Загрузка и масштабирование фонового изображения."""
