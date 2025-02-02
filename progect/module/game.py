@@ -36,7 +36,7 @@ class Game:
         self.fullscreen = False
 
         # Шрифт для экрана загрузки
-        self.font_path = os.path.join("data/pixelfont.otf")
+        self.font_path = os.path.join("data/play_font.otf")
         try:
             self.pixel_font = pygame.font.Font(self.font_path, 72)
             self.pixel_font_small = pygame.font.Font(self.font_path, 36)
@@ -45,7 +45,7 @@ class Game:
 
         # Надпись в левом нижнем углу
         self.version_text = "Alpha_test v.0.1"
-        self.version_font = pygame.font.Font("data/pixelfont.otf", 15)  # Шрифт для версии
+        self.version_font = pygame.font.Font("data/play_font.otf", 15)  # Шрифт для версии
 
         # Экран загрузки
         self.loading_screen = LoadingScreen(self.screen, self.SCREEN_WIDTH, self.SCREEN_HEIGHT, self.pixel_font)
