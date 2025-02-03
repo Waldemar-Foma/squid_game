@@ -18,9 +18,12 @@ GREEN = (0, 255, 0)
 BLUE = (0, 0, 255)
 YELLOW = (255, 255, 0)
 GRAY = (200, 200, 200)
+TURQUOISE = (64, 224, 208)  # Бирюзовый цвет
+LIGHT_TURQUOISE = (144, 255, 240)  # Светло-бирюзовый для эффектов
 
 # Шрифты
 font = pygame.font.Font(None, 36)
+title_font = pygame.font.Font(None, 48)
 
 # Класс для стекол
 class Glass:
@@ -28,12 +31,22 @@ class Glass:
         self.rect = pygame.Rect(x, y, width, height)
         self.color = color
         self.broken = False
+        self.hovered = False
 
     def draw(self, screen):
-        if self.broken:
-            pygame.draw.rect(screen, RED, self.rect)
-        else:
-            pygame.draw.rect(screen, self.color, self.rect)
+        # Рисуем стекло с тенью
+        shadow = pygame.Surface((self.rect.width, self.rect.height), pygame.SRCALPHA)
+        shadow.fill((0, 0, 0, 50))
+        screen.blit(shadow, (self.rect.x + 5, self.rect.y + 5))
+
+        # Рисуем стекло
+        pygame.draw.rect(screen, self.color, self.rect)
+
+        # Эффект при наведении
+        if self.hovered:
+            highlight = pygame.Surface((self.rect.width, self.rect.height), pygame.SRCALPHA)
+            highlight.fill((255, 255, 255, 50))
+            screen.blit(highlight, self.rect.topleft)
 
 # Класс для кнопок
 class Button:
@@ -41,17 +54,32 @@ class Button:
         self.rect = pygame.Rect(x, y, width, height)
         self.text = text
         self.color = color
+        self.hovered = False
 
     def draw(self, screen):
+        # Рисуем кнопку с тенью
+        shadow = pygame.Surface((self.rect.width, self.rect.height), pygame.SRCALPHA)
+        shadow.fill((0, 0, 0, 50))
+        screen.blit(shadow, (self.rect.x + 5, self.rect.y + 5))
+
+        # Рисуем кнопку
         pygame.draw.rect(screen, self.color, self.rect)
+
+        # Эффект при наведении
+        if self.hovered:
+            highlight = pygame.Surface((self.rect.width, self.rect.height), pygame.SRCALPHA)
+            highlight.fill((255, 255, 255, 50))
+            screen.blit(highlight, self.rect.topleft)
+
+        # Текст кнопки
         draw_text(self.text, self.rect.x + 10, self.rect.y + 10, BLACK)
 
     def is_clicked(self, pos):
         return self.rect.collidepoint(pos)
 
 # Функция для отображения текста
-def draw_text(text, x, y, color=WHITE):
-    text_surface = font.render(text, True, color)
+def draw_text(text, x, y, color=WHITE, font_type=font):
+    text_surface = font_type.render(text, True, color)
     screen.blit(text_surface, (x, y))
 
 # Основная функция игры
@@ -88,21 +116,30 @@ def main():
     while running:
         screen.fill(BLACK)
 
+        # Фоновый градиент
+        for y in range(HEIGHT):
+            # Ограничиваем значения цветов в диапазоне 0–255
+            r = min(y // 3, 255)
+            g = min(y // 2, 255)
+            b = min(y, 255)
+            color = (r, g, b)
+            pygame.draw.line(screen, color, (0, y), (WIDTH, y))
+
         if not game_started:
             # Отрисовка кнопок выбора сложности
             easy_button.draw(screen)
             medium_button.draw(screen)
             hard_button.draw(screen)
-            draw_text("Выберите уровень сложности:", 100, 100, WHITE)
+            draw_text("Выберите уровень сложности:", 100, 100, WHITE, title_font)
         elif game_over:
             # Экран проигрыша
-            draw_text("Вы проиграли!", WIDTH // 2 - 100, HEIGHT // 2 - 50, RED)
+            draw_text("Вы проиграли!", WIDTH // 2 - 100, HEIGHT // 2 - 50, RED, title_font)
             close_button.draw(screen)
         else:
             # Создание стекол только при начале новой пары
             if current_pair < num_pairs and not glasses:
-                glass1 = Glass(200, 300, 100, 200, BLUE)
-                glass2 = Glass(500, 300, 100, 200, GREEN)
+                glass1 = Glass(200, 300, 100, 200, TURQUOISE)  # Бирюзовый цвет
+                glass2 = Glass(500, 300, 100, 200, TURQUOISE)  # Бирюзовый цвет
                 glasses = [glass1, glass2]
 
                 # Выбор случайного стекла, которое будет сломано
@@ -111,13 +148,14 @@ def main():
 
             # Отрисовка стекол
             for glass in glasses:
+                glass.hovered = glass.rect.collidepoint(pygame.mouse.get_pos())
                 glass.draw(screen)
 
             # Отрисовка текста
             draw_text(f"Жизни: {lives}", 10, 10)
             draw_text(f"Проверки: {checks}", 10, 50)
             draw_text(f"Пара: {current_pair + 1}/{num_pairs}", 10, 90)
-            draw_text(result_text, WIDTH // 2 - 100, HEIGHT // 2 - 50, result_color)
+            draw_text(result_text, WIDTH // 2 - 100, HEIGHT // 2 - 50, result_color, title_font)
 
             # Подсказка для игрока
             if selected_glass is None:
@@ -131,7 +169,7 @@ def main():
 
             # Если все пары пройдены
             if current_pair >= num_pairs:
-                draw_text("Вы прошли все пары!", WIDTH // 2 - 150, HEIGHT // 2, GREEN)
+                draw_text("Вы прошли все пары!", WIDTH // 2 - 150, HEIGHT // 2, GREEN, title_font)
                 pygame.display.flip()
                 pygame.time.delay(2000)
                 running = False
