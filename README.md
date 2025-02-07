@@ -1,4 +1,4 @@
-# **Игра в кальмара**
+![image](https://github.com/user-attachments/assets/c84e2350-e519-478c-8bcd-5f9a2ed5695b)# **Игра в кальмара**
 
 ![Python](https://img.shields.io/badge/Python-3.x-blue)
 ![Pygame](https://img.shields.io/badge/Pygame-2.x-green)
@@ -14,7 +14,12 @@
 - **Настройки**: Регулировка громкости музыки и звуков, выбор сложности.
 - **Экран загрузки**: Отображение прогресса загрузки ресурсов.
 
+![image 2](https://github.com/user-attachments/assets/913f1ea9-3054-403c-a101-74929d73d43d)
+![image 1](https://github.com/user-attachments/assets/6ef23758-9bc1-4440-976e-0bed83d5e109)
+
+
 ---
+
 
 ## **Мини-игры**
 
@@ -22,8 +27,9 @@
 2. **Русская рулетка**: Испытание на удачу.
 3. **Стеклянный мост**: Игроки должны выбрать правильные стеклянные панели, чтобы пройти.
 4. **Камень, ножницы, бумага**: Классическая игра на выживание.
-
 ---
+![0](https://github.com/user-attachments/assets/d6f4e476-3929-44af-80fb-7f23f8bc5bb1)
+![1](https://github.com/user-attachments/assets/9e17479d-7f3f-4cb7-b61c-61006176fb5e)
 
 ## **Статистика**
 
