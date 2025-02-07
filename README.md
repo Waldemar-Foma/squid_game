@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/c84e2350-e519-478c-8bcd-5f9a2ed5695b)# **Игра в кальмара**
+# **Игра в кальмара**
 
 ![Python](https://img.shields.io/badge/Python-3.x-blue)
 ![Pygame](https://img.shields.io/badge/Pygame-2.x-green)
