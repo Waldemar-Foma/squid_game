@@ -33,12 +33,16 @@
 
 bash
 Copy
+```
 git clone https://github.com/squid_game.git
+```
 Перейдите в директорию проекта и запустите игру:
 
 bash
 Copy
+```
 python main.py
+```
 Зависимости
 Python 3.x
 
